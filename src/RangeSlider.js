@@ -9,10 +9,11 @@ import Animated,{
 	useAnimatedProps,
 	runOnJS
 } from 'react-native-reanimated'
+import SliderIcon from './SliderIcon'
 
 const AnimatedTextInput= Animated.createAnimatedComponent(TextInput)
 const {width,height}= Dimensions.get('window')
-const iconSize= 25
+const iconSize= 20
 const maxWidth= width*0.9 - iconSize*2
 
 const RangeSlider= ({range,move,onChange}) => {
@@ -23,6 +24,8 @@ const RangeSlider= ({range,move,onChange}) => {
 	const scaleLowerLimit= useSharedValue(1)	
 	const scaleUpperLimit= useSharedValue(1)	
 	
+	
+
 	const styleLine= useAnimatedStyle(() => {
 		return {
 			backgroundColor: 'tomato',
@@ -117,6 +120,8 @@ const RangeSlider= ({range,move,onChange}) => {
           }
 	})
 
+	const imageSource1= require('./pomegranate.jpg')
+
 	return (
 		<View style={styles(maxWidth,iconSize).main} >
 			<View style={styles().rangeContainer}>
@@ -138,15 +143,19 @@ const RangeSlider= ({range,move,onChange}) => {
 					>
                               <Animated.View 
 							style={[styles(maxWidth,iconSize).icon,styleLowerLimit]} 
-						/>
+						>
+							<SliderIcon param={{icon:imageSource1,iconSize}} />
+						</Animated.View>
                          </PanGestureHandler>
  
                          <PanGestureHandler 
 						onGestureEvent={gestureHandlerUpper} 
 					>
-                              <Animated.View 
+                             <Animated.View 
 							style={[styles(maxWidth,iconSize).icon,styleUpperLimit]} 
-						/>
+						>
+							<SliderIcon param={{icon:imageSource1,iconSize}} />
+						</Animated.View>
                          </PanGestureHandler>
                     </View>	
 			</View>
